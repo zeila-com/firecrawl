@@ -51,6 +51,8 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
+    "@ai-sdk/google": "^1.1.22",
+    "@ai-sdk/provider": "^1.0.10",
     "@ai-sdk/openai": "^1.1.13",
     "@anthropic-ai/sdk": "^0.24.3",
     "@apidevtools/json-schema-ref-parser": "^11.7.3",

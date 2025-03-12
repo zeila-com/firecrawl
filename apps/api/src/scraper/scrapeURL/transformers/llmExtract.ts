@@ -97,7 +97,7 @@ interface TrimResult {
   warning?: string;
 }
 
-export function trimToTokenLimit(text: string, maxTokens: number, modelId: string="gpt-4o", previousWarning?: string): TrimResult {
+export function trimToTokenLimit(text: string, maxTokens: number, modelId: string="gemini-2.0-flash", previousWarning?: string): TrimResult {
   try {
     const encoder = encoding_for_model(modelId as TiktokenModel);
     try {
@@ -155,7 +155,7 @@ export async function generateCompletions({
   markdown,
   previousWarning,
   isExtractEndpoint,
-  model = getModel("gpt-4o-mini"),
+  model = getModel("gemini-2.0-flash"),
   mode = "object",
 }: {
   model?: LanguageModel; 
@@ -379,7 +379,7 @@ export function removeDefaultProperty(schema: any): any {
 }
 
 export async function generateSchemaFromPrompt(prompt: string): Promise<any> {
-  const model = getModel("gpt-4o");
+  const model = getModel("gemini-2.0-flash");
   const temperatures = [0, 0.1, 0.3]; // Different temperatures to try
   let lastError: Error | null = null;
 

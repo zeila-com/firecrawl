@@ -31,7 +31,7 @@ export async function checkShouldExtract(
     },
     markdown: buildDocument(doc),
     isExtractEndpoint: true,
-    model: getModel("gpt-4o-mini"),
+    model: getModel("gemini-2.0-flash"),
   });
 
   return {

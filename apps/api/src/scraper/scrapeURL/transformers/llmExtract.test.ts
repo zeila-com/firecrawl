@@ -64,7 +64,7 @@ describe("trimToTokenLimit", () => {
     const text = "This is a test text";
     mockEncode.mockReturnValue(new Array(5)); // Simulate 5 tokens
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result).toEqual({
       text,
@@ -81,7 +81,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(20)) // First call for full text
       .mockReturnValueOnce(new Array(8)); // Second call for trimmed text
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThan(text.length);
     expect(result.numTokens).toBe(8);
@@ -97,7 +97,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(15))
       .mockReturnValueOnce(new Array(8));
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o", previousWarning);
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash", previousWarning);
     
     expect(result.warning).toContain("automatically trimmed");
     expect(result.warning).toContain(previousWarning);
@@ -109,7 +109,7 @@ describe("trimToTokenLimit", () => {
       throw new Error("Encoder error");
     });
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThanOrEqual(30); // 10 tokens * 3 chars per token
     expect(result.numTokens).toBe(10);
@@ -120,7 +120,7 @@ describe("trimToTokenLimit", () => {
     const text = "";
     mockEncode.mockReturnValue([]);
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result).toEqual({
       text: "",
@@ -136,7 +136,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(130000)) // First check shows it's too long
       .mockReturnValueOnce(new Array(127000)); // Second check shows it's within limit after trim
 
-    const result = trimToTokenLimit(text, 128000, "gpt-4o");
+    const result = trimToTokenLimit(text, 128000, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThan(text.length);
     expect(result.numTokens).toBe(127000);
@@ -151,7 +151,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(520000)) // First check shows it's too long
       .mockReturnValueOnce(new Array(32000)); // Second check shows it's within context limit after trim
 
-    const result = trimToTokenLimit(text, 32000, "gpt-4o");
+    const result = trimToTokenLimit(text, 32000, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThan(text.length);
     expect(result.numTokens).toBe(32000);
@@ -164,7 +164,7 @@ describe("trimToTokenLimit", () => {
     const text = "Short text";
     mockEncode.mockReturnValue(new Array(5)); // 5 tokens
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result.text).toBe(text);
     expect(result.numTokens).toBe(5);
@@ -179,7 +179,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(100))
       .mockReturnValueOnce(new Array(50));
 
-    const result = trimToTokenLimit(text, 50, "gpt-4o", previousWarning);
+    const result = trimToTokenLimit(text, 50, "gemini-2.0-flash", previousWarning);
     
     expect(result.warning).toContain("automatically trimmed");
     expect(result.warning).toContain(previousWarning);
@@ -192,7 +192,7 @@ describe("trimToTokenLimit", () => {
       throw new Error("Encoder initialization failed");
     });
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThanOrEqual(30); // 10 tokens * 3 chars
     expect(result.warning).toContain("Failed to derive number of LLM tokens");
@@ -205,7 +205,7 @@ describe("trimToTokenLimit", () => {
       throw new Error("Encoding failed");
     });
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThanOrEqual(30);
     expect(result.warning).toContain("Failed to derive number of LLM tokens");
@@ -218,7 +218,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(20))
       .mockReturnValueOnce(new Array(3));
 
-    const result = trimToTokenLimit(text, 3, "gpt-4o");
+    const result = trimToTokenLimit(text, 3, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThan(text.length);
     expect(result.numTokens).toBe(3);
@@ -232,7 +232,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(8))
       .mockReturnValueOnce(new Array(4));
 
-    const result = trimToTokenLimit(text, 4, "gpt-4o");
+    const result = trimToTokenLimit(text, 4, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThan(text.length);
     expect(result.numTokens).toBe(4);
@@ -248,7 +248,7 @@ describe("trimToTokenLimit", () => {
       .mockReturnValueOnce(new Array(100))
       .mockReturnValueOnce(new Array(50));
 
-    const result = trimToTokenLimit(text, 50, "gpt-4o");
+    const result = trimToTokenLimit(text, 50, "gemini-2.0-flash");
     
     expect(result.text.length).toBeLessThan(text.length);
     expect(result.numTokens).toBe(50);
@@ -261,7 +261,7 @@ describe("trimToTokenLimit", () => {
     const text = "Exact token limit text";
     mockEncode.mockReturnValue(new Array(10));
 
-    const result = trimToTokenLimit(text, 10, "gpt-4o");
+    const result = trimToTokenLimit(text, 10, "gemini-2.0-flash");
     
     expect(result.text).toBe(text);
     expect(result.numTokens).toBe(10);

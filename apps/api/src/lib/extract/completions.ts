@@ -26,11 +26,11 @@
 
 // export async function generateBasicCompletion(prompt: string) {
 //   const openai = new OpenAI();
-//   const model: TiktokenModel =
-//     (process.env.MODEL_NAME as TiktokenModel) || "gpt-4o-mini";
+//   const modelName =
+//     (process.env.MODEL_NAME as TiktokenModel) || "gemini-2.0-flash";
 
 //   const completion = await openai.chat.completions.create({
-//     model,
+//     model: modelName,
 //     messages: [{ role: "user", content: prompt }],
 //   });
 
@@ -47,14 +47,14 @@
 //   metadata: { numTokens: number; warning: string };
 // }> {
 //   const openai = new OpenAI();
-//   const model: TiktokenModel =
-//     (process.env.MODEL_NAME as TiktokenModel) || "gpt-4o-mini";
+//   const modelName =
+//     (process.env.MODEL_NAME as TiktokenModel) || "gemini-2.0-flash";
 
 //   let extractionContent = pagesContent;
 //   let numTokens = 0;
 //   let warning = "";
 
-//   const encoder = encoding_for_model(model);
+//   const encoder = encoding_for_model(modelName);
 //   try {
 //     const tokens = encoder.encode(extractionContent);
 //     numTokens = tokens.length;
@@ -86,7 +86,7 @@
 
 //   const jsonCompletion = await openai.beta.chat.completions.parse({
 //     temperature: 0,
-//     model,
+//     model: modelName,
 //     messages: [
 //       { role: "system", content: systemPrompt ?? "" },
 //       { role: "user", content: [{ type: "text", text: extractionContent }] },

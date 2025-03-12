@@ -675,8 +675,7 @@ export async function performExtraction(
   // let finalResultTokens = 0;
   // if (finalResult) {
   //   const finalResultStr = JSON.stringify(finalResult);
-  //   finalResultTokens = numTokensFromString(finalResultStr, "gpt-4o");
-
+  //   finalResultTokens = numTokensFromString(finalResultStr, "gemini-2.0-flash");
   // }
   // // Deduplicate and validate final result against schema
   // if (reqSchema && finalResult && finalResult.length <= extractConfig.DEDUPLICATION.MAX_TOKENS) {
@@ -709,7 +708,7 @@ export async function performExtraction(
   //     undefined,
   //     undefined,
   //     true,
-  //     "gpt-4o"
+  //     "gemini-2.0-flash"
   //   );
   //   console.log("schemaValidation", schemaValidation);
 

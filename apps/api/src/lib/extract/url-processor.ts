@@ -12,7 +12,7 @@ import { getModel } from "../generic-ai";
 
 export async function generateBasicCompletion(prompt: string) {
   const { text } = await generateText({
-    model: getModel("gpt-4o"),
+    model: getModel("gemini-2.0-flash"),
     prompt: prompt,
     temperature: 0
   });
